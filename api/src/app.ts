@@ -11,7 +11,7 @@ const allowedWebOrigins = new Set([
   process.env.WEB_ORIGIN || 'http://localhost:3000',
   'http://localhost:3000',
   'http://localhost:3001',
-  'https://web-production-850f3.up.railway.app/'
+  'https://web-production-850f3.up.railway.app'
 ]);
 app.use(cors({ origin: (origin, callback) => {
   if (!origin || allowedWebOrigins.has(origin)) callback(null, true);
