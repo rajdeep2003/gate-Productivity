@@ -28,7 +28,7 @@ Deploy this monorepo as **two Railway services**, both using the repository root
 | API | `npm run build:api` | `npm run start:api` | `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `WEB_ORIGIN` |
 | Web | `npm run build:web` | `npm run start:web` | `NEXT_PUBLIC_API_URL` |
 
-Set `WEB_ORIGIN` to the web service's public origin. Set `NEXT_PUBLIC_API_URL` to the API service's public URL followed by `/api`; Next.js embeds this value during the web build, so configure it before building. Railway provides `PORT` to each service. Keep the Supabase secret only on the API service and never set it as a `NEXT_PUBLIC_` variable.
+Set `WEB_ORIGIN` to the web service's public origin. Set `NEXT_PUBLIC_API_URL` to `https://api-production-8ea0.up.railway.app/api` (or your API service's public URL followed by `/api`); Next.js embeds this value during the web build, so configure it before building. Railway provides `PORT` to each service. Keep the Supabase secret only on the API service and never set it as a `NEXT_PUBLIC_` variable.
 
 **Access warning:** this API intentionally has no authentication and its session routes can write to Supabase. A public Railway API URL is reachable by anyone; CORS does not restrict non-browser clients. Do not make the API public until you have chosen an access-control approach or explicitly accept that exposure. This project currently has no auth-free way to keep the browser frontend public while restricting API writes.
 
@@ -38,4 +38,4 @@ All routes are under `/api`. The API calls Supabase's REST Data API with the ser
 
 Endpoints include `/sessions`, `/sessions/active`, `/daily`, `/daily/:date/hourly`, `/weekly`, `/monthly`, `/questions/by-sub`, and `/subs`. Invalid input returns JSON with status 400; missing sessions/routes return 404.
 
-The frontend reads `NEXT_PUBLIC_API_URL` at build time and defaults to `http://localhost:4000/api`. The API allows the frontend origin configured in `WEB_ORIGIN`.
+The frontend reads `NEXT_PUBLIC_API_URL` at build time and defaults to `https://api-production-8ea0.up.railway.app/api`. Local development overrides it through `web/.env.local`. The API allows the frontend origin configured in `WEB_ORIGIN`.

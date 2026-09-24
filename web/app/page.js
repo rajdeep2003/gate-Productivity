@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-const configuredApiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000').replace(/\/$/, '');
+const configuredApiUrl = (process.env.NEXT_PUBLIC_API_URL || 'https://api-production-8ea0.up.railway.app/api').replace(/\/$/, '');
 const API_ROOT = configuredApiUrl.endsWith('/api') ? configuredApiUrl : `${configuredApiUrl}/api`;
 const STUDY_TYPES = [
   ['revision', 'Revision'],
