@@ -1,0 +1,26 @@
+{
+  "name": "gate-productivity-api",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "web",
+    "api"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c green,blue \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace api",
+    "dev:web": "npm run dev --workspace web",
+    "build": "npm run build:api && npm run build:web",
+    "build:api": "npm run build --workspace api",
+    "build:web": "npm run build --workspace web",
+    "start": "concurrently -k -n API,WEB -c green,blue \"npm:start:api\" \"npm:start:web\"",
+    "start:api": "npm run start --workspace api",
+    "start:web": "npm run start --workspace web"
+  },
+  "devDependencies": {
+    "concurrently": "9.2.1"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
